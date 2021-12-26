@@ -1,7 +1,33 @@
 from dataclasses import dataclass, field
-from typing import Optional
 
 ALL_SEGMENTS = 'abcdefg'
+
+DISPLAY = {
+    1: 'cf',  # 2 (unique)
+    7: 'acf',  # 3 (unique)
+    4: 'bcdf',  # 4 (unique)
+    2: 'acdeg',  # 5
+    3: 'acdfg',  # 5
+    5: 'abdfg',  # 5
+    0: 'abcefg',  # 6
+    6: 'abdefg',  # 6
+    9: 'abcdfg',  # 6
+    8: 'abcdefg',  # 7 (unique)
+}
+
+TO_DECODE = {value: key for key, value in DISPLAY.items()}
+
+UNIQUE_LENGTH = {
+    2: 1,
+    3: 7,
+    4: 4,
+    # 7: 8,  # it does not give any useful information
+}
+
+NOT_UNIQUE_LENGTH = {
+    5: {'a', 'd', 'g'},
+    6: {'a', 'b', 'f', 'g'},
+}
 
 
 @dataclass
@@ -13,14 +39,6 @@ class Display:
 
     def add_options(self, segment: str, options: set[str]) -> None:
         self._segments[segment] &= options
-
-    # def _guess_digit(self, segments: str, occupied: Optional[set[str]]):
-    #     for segment in segments:
-    #         possible_segments = self._segments[segment] - occupied
-    #         if not possible_segments:
-    #             return
-    #
-    #         for possible_segments
 
     def decode(self) -> dict[str, str]:
         while self._apply_equal_set_rule():
@@ -65,36 +83,6 @@ class Display:
                 result.add(segment)
 
         return result
-
-
-
-
-DISPLAY = {
-    1: 'cf',       # 2 (unique)
-    7: 'acf',      # 3 (unique)
-    4: 'bcdf',     # 4 (unique)
-    2: 'acdeg',    # 5
-    3: 'acdfg',    # 5
-    5: 'abdfg',    # 5
-    0: 'abcefg',   # 6
-    6: 'abdefg',   # 6
-    9: 'abcdfg',   # 6
-    8: 'abcdefg',  # 7 (unique)
-}
-
-TO_DECODE = {value: key for key, value in DISPLAY.items()}
-
-UNIQUE_LENGTH = {
-    2: 1,
-    3: 7,
-    4: 4,
-    # 7: 8,  # it does not give any useful information
-}
-
-NOT_UNIQUE_LENGTH = {
-    5: {'a', 'd', 'g'},
-    6: {'a', 'b', 'f', 'g'},
-}
 
 
 def main() -> None:
