@@ -1,4 +1,4 @@
-if __name__ == '__main__':
+def main() -> None:
     result = 0
     previous = None
 
@@ -12,3 +12,7 @@ if __name__ == '__main__':
             previous = current
 
     print(result)
+
+
+if __name__ == '__main__':
+    main()

@@ -1,7 +1,4 @@
-from typing import List
-
-
-def _find_border(sorted_lines: List[str], minimum: int, maximum: int, bit_position: int) -> int:
+def _find_border(sorted_lines: list[str], minimum: int, maximum: int, bit_position: int) -> int:
     if minimum + 1 == maximum:
         return minimum
 
@@ -23,7 +20,7 @@ def _find_border(sorted_lines: List[str], minimum: int, maximum: int, bit_positi
         )
 
 
-def _extract_rating(sorted_lines: List[str], invert: bool = False) -> str:
+def _extract_rating(sorted_lines: list[str], invert: bool = False) -> str:
     minimum = 0
     maximum = len(sorted_lines)
 
@@ -54,9 +51,7 @@ def _extract_rating(sorted_lines: List[str], invert: bool = False) -> str:
     return sorted_lines[minimum]
 
 
-if __name__ == '__main__':
-    common_bits = None
-
+def main() -> None:
     with open('input.txt') as f:
         sorted_lines = sorted(f.readlines())
 
@@ -64,3 +59,7 @@ if __name__ == '__main__':
     co2_rating = int(''.join(_extract_rating(sorted_lines, invert=True)), 2)
 
     print(oxygen_rating * co2_rating)
+
+
+if __name__ == '__main__':
+    main()

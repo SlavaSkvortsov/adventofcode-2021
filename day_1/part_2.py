@@ -1,4 +1,4 @@
-if __name__ == '__main__':
+def main() -> None:
     result = 0
     bucket = [0, 0, 0]
     previous = None
@@ -27,3 +27,7 @@ if __name__ == '__main__':
 
 
     print(result)
+
+
+if __name__ == '__main__':
+    main()

@@ -1,4 +1,4 @@
-if __name__ == '__main__':
+def main() -> None:
     with open('input.txt') as f:
         horizontal, depth, aim = 0, 0, 0
 
@@ -15,3 +15,7 @@ if __name__ == '__main__':
                 aim += length
 
     print(horizontal * depth)
+
+
+if __name__ == '__main__':
+    main()

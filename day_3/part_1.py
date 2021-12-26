@@ -1,4 +1,4 @@
-if __name__ == '__main__':
+def main() -> None:
     common_bits = None
 
     with open('input.txt') as f:
@@ -13,3 +13,7 @@ if __name__ == '__main__':
     epsilon_rate = int(''.join(str(int(bit < 0)) for bit in common_bits), 2)
 
     print(gamma_rate * epsilon_rate)
+
+
+if __name__ == '__main__':
+    main()
